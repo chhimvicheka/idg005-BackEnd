@@ -247,7 +247,7 @@ export const useRecentChatsStore = defineStore("recentChats", {
       });
     },
     syncMultiChats(chats) {
-      chats.forEach((chat) => {
+      for (const chat of chats) {
         const index = this.chats.findIndex(
           (c) => Number(c.id) === Number(chat.id),
         );
@@ -257,7 +257,7 @@ export const useRecentChatsStore = defineStore("recentChats", {
           this.chats.push(chat);
         }
         this.subscribeToChatMessageEvents(chat.id); // Subscribe to chat message events for each chat
-      });
+      }
       this.sortChats();
     },
     syncChat(chat) {
@@ -281,7 +281,7 @@ export const useRecentChatsStore = defineStore("recentChats", {
     syncMultiChatMessages(chatId, messages) {
       const chat = this.getChatById(chatId);
       if (chat) {
-        messages.forEach((message) => {
+        for (const message of messages) {
           const index = chat.messages.findIndex(
             (m) => Number(m.id) === Number(message.id),
           );
@@ -290,7 +290,7 @@ export const useRecentChatsStore = defineStore("recentChats", {
           } else {
             chat.messages.push(message);
           }
-        });
+        }
         this.sortChats();
       }
     },

@@ -227,7 +227,7 @@ export const useRecentChatsStore = defineStore("recentChats", {
     syncMultiChatMessages(chatId, messages) {
       const chat = this.getChatById(chatId);
       if (chat) {
-        messages.forEach((message) => {
+        for (const message of messages) {
           const index = chat.messages.findIndex(
             (m) => Number(m.id) === Number(message.id),
           );
@@ -236,7 +236,7 @@ export const useRecentChatsStore = defineStore("recentChats", {
           } else {
             chat.messages.push(message);
           }
-        });
+        }
         this.sortChats();
       }
     },
